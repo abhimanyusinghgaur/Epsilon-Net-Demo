@@ -1,10 +1,10 @@
 package edu.iitj.epsilon_netdemo;
 
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
+import android.text.Html;
 import android.text.InputType;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -15,9 +15,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.ViewTreeObserver;
-import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -86,6 +88,16 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
     }
 
+    private void setButtonsEnabled(boolean state) {
+        Button addPointButton = (Button) findViewById(R.id.add_point_button);
+        Button setEpsilonButton = (Button) findViewById(R.id.set_epsilon_button);
+        Button generateEnetButton = (Button) findViewById(R.id.generate_enet_button);
+        addPointButton.setEnabled(state);
+        setEpsilonButton.setEnabled(state);
+        generateEnetButton.setEnabled(state);
+        mEnetDisplayView.setOnTouchListener(state ? mEnetDisplayView : null);
+    }
+
     public void onClickStatusBar(View v) {
         SlidingLayer mSlidingLayer = (SlidingLayer) findViewById(R.id.slidingLayer);
         if(mSlidingLayer.isOpened())
@@ -99,6 +111,7 @@ public class MainActivity extends AppCompatActivity
         mEnetDisplayView.reset();
         mEpsilonTextView.setText(getResources().getString(R.string.epsilon, "-"));
         mEnetPointsTextView.setText(getResources().getString(R.string.enet_points, "-"));
+        setButtonsEnabled(true);
     }
 
     public void onClickRandomPointsButton(View v) {
@@ -122,9 +135,8 @@ public class MainActivity extends AppCompatActivity
                         } else if(Integer.parseInt(num_points.getText().toString()) > 1000 || Integer.parseInt(num_points.getText().toString()) <= 0) {
                             num_points.setError("Number should be between [1, 1000]");
                         } else {
-                            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                            imm.hideSoftInputFromWindow(num_points.getWindowToken(), 0);
                             mEnetDisplayView.generateRandomPoints(Integer.parseInt(num_points.getText().toString()));
+                            setButtonsEnabled(true);
                             alertDialog.dismiss();
                         }
                     }
@@ -199,8 +211,6 @@ public class MainActivity extends AppCompatActivity
                         } else if(Float.parseFloat(epsilon.getText().toString()) > 1.0f || Float.parseFloat(epsilon.getText().toString()) <= 0.0f) {
                             epsilon.setError("Epsilon should be between (0, 1]");
                         } else {
-                            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                            imm.hideSoftInputFromWindow(epsilon.getWindowToken(), 0);
                             mEpsilon = Float.parseFloat(epsilon.getText().toString());
                             mEpsilonTextView.setText(getResources().getString(R.string.epsilon, epsilon.getText().toString()));
                             alertDialog.dismiss();
@@ -254,6 +264,8 @@ public class MainActivity extends AppCompatActivity
                 }
                 mEnetDisplayView.drawEnet(indices);
                 mEnetPointsTextView.setText(getResources().getString(R.string.enet_points, indices.length));
+
+                setButtonsEnabled(false);
             }
         } catch (Exception e) {
             Toast.makeText(this,e.getLocalizedMessage(), Toast.LENGTH_LONG).show();
@@ -268,19 +280,35 @@ public class MainActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
+        FrameLayout homeLayout = (FrameLayout) findViewById(R.id.home_layout);
+        TextView navHeading = (TextView) findViewById(R.id.nav_heading);
+        TextView navText = (TextView) findViewById(R.id.nav_text);
+        ScrollView navTextScrollView = (ScrollView) findViewById(R.id.nav_text_scroll_view);
 
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
-
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
+        if (id == R.id.nav_home) {
+            homeLayout.setVisibility(View.VISIBLE);
+            navHeading.setVisibility(View.GONE);
+            navTextScrollView.setVisibility(View.GONE);
+        } else if (id == R.id.nav_usage) {
+            homeLayout.setVisibility(View.GONE);
+            navHeading.setVisibility(View.VISIBLE);
+            navTextScrollView.setVisibility(View.VISIBLE);
+            navHeading.setText(R.string.usage);
+            navText.setText(Html.fromHtml(getResources().getString(R.string.usage_text)));
+        } else if (id == R.id.nav_about) {
+            homeLayout.setVisibility(View.GONE);
+            navHeading.setVisibility(View.VISIBLE);
+            navTextScrollView.setVisibility(View.VISIBLE);
+            navHeading.setText(R.string.about);
+            navText.setText(Html.fromHtml(getResources().getString(R.string.about_text)));
+        } else if (id == R.id.nav_credits) {
+            homeLayout.setVisibility(View.GONE);
+            navHeading.setVisibility(View.VISIBLE);
+            navTextScrollView.setVisibility(View.VISIBLE);
+            navHeading.setText(R.string.credits);
+            navText.setText(Html.fromHtml(getResources().getString(R.string.credits_text)));
+        } else if (id == R.id.nav_exit) {
+            finish();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

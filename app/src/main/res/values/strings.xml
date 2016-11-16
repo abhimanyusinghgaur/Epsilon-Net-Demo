@@ -21,4 +21,48 @@
     <string name="add_point">Add Point</string>
     <string name="set_epsilon">Set Epsilon</string>
     <string name="generate_enet">Generate E-net</string>
+
+    //  Navigation Strings
+    <string name="usage">Usage</string>
+    <string name="about">About</string>
+    <string name="credits">Credits</string>
+
+    <string name="usage_text">
+        <![CDATA[
+        Note the following points:
+        <ul>
+            <li>The top grey bar on the home screen is called <i>STATUS BAR</i>. It displays status of the various application properties, like the last added point and total number of points in the canvas, epsilon value and number of points in epsilon-net. </li>
+            <li>Touch the <i>STATUS BAR</i> to open/close the <i>LOG</i> area. In <i>LOG</i> area you can see the co-ordinates of all created points and points in epsilon-net, plotted in <i>CANVAS</i>.</li>
+            <li>At the end of <i>STATUS BAR</i> you can see <i>RESET BUTTON</i>. Use it to reset the application.</li>
+            <li>The black region below <i>STATUS BAR</i> is called <i>CANVAS</i>. This region is used for graphically displaying the epsilon-net. Touch anywhere on this region to add a point in <i>CANVAS</i> at that position.</li>
+            <li>The bottom bar contains four buttons for different uses as explained below.</li>
+            <li><i>RANDOM POINTS</i> button can be used to randomly generate and plot given number of points in <i>CANVAS</i>.</li>
+            <li><i>ADD POINT</i> button can be used to add a single point to the <i>CANVAS</i>. Note that same can be achieved by touching on the <i>CANVAS</i>.</li>
+            <li><i>SET EPSILON</i> button is used to set the value of epsilon for generating the epsilon-net.</li>
+            <li><i>GENERATE E-NET</i> button is used to generate the epsilon net for the current configuration. The points in the epsilon-net are displayed in red colour.</li>
+            <li>Internet is required during the process of generating the epsilon-net, as API calls are made.</li>
+        </ul>
+        Use the application as follows:
+        <ul>
+            <li>First plot some points in the canvas.</li>
+            <li>Set the value of epsilon.</li>
+            <li>Generate epsilon-net.</li>
+            <li>Check logs if required, otherwise, reset the application to use it again.</li>
+        </ul>
+        ]]>
+    </string>
+
+    <string name="about_text">
+        <![CDATA[
+        <p>This application graphically demonstrates an example of the algorithm proposed by <i><b>Norbert</b> et al</i> in their paper titled <b>Tighter Estimates for e-nets for Disks</b>.</p>
+        <p>Their algorithm greatly reduces the upper bound on the size of epsilon-nets for family of disks in the plane. The algorithm proposed by them gives an epsilon-net of size less than or equal to 13.4/&#120576;.</p>
+        ]]>
+    </string>
+
+    <string name="credits_text">
+        <![CDATA[
+        Credits
+        ]]>
+    </string>
+
 </resources>

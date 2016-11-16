@@ -111,7 +111,6 @@ public class AsyncServerTask extends AsyncTask<String, Void, String> {
                 response.append('\r');
             }
             rd.close();
-            Log.d("post", response.toString());
             Log.d("post", "Response Code: "+responseCode);
         } catch (IOException e) {
             e.printStackTrace();
@@ -124,15 +123,11 @@ public class AsyncServerTask extends AsyncTask<String, Void, String> {
     protected void onPostExecute(String result) {
         String s = result.trim();
         try {
-//            Log.d("***********************"," invoking completionCallback *******************************************");
             if(completionCallback != null)
                 completionCallback.invoke(object, s);
-//            Log.d("CheckDBVersionString", s);
-//            Log.d("***********************"," invoked completionCallback *******************************************");
         }
         catch (Exception e) {
             e.printStackTrace();
-//            Log.d("***********************","Error in invoking completionCallback *******************************************");
         }
     }
 }

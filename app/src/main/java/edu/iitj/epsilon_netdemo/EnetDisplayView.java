@@ -5,7 +5,6 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -41,9 +40,6 @@ public class EnetDisplayView extends SurfaceView implements View.OnTouchListener
     }
 
     public ArrayList<Integer> getPoints() {
-        Log.d("********************", "******************************************************************************************");
-        Log.d("Points", Utils.toString(points));
-        Log.d("********************", "******************************************************************************************");
         return points;
     }
 
