@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <LinearLayout
+            android:id="@+id/status_bar"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="36dp"
+            android:paddingRight="8dp"
+            android:paddingLeft="8dp"
+            android:background="@android:color/darker_gray"
+            android:layout_alignParentTop="true">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:id="@+id/last_point_text_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:text="@string/total_points"
+                    android:layout_weight="1"/>
+
+                <TextView
+                    android:id="@+id/total_points_text_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:text="@string/total_points"
+                    android:layout_weight="1"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:id="@+id/epsilon_text_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:text="@string/enet_points"
+                    android:layout_weight="1"/>
+
+                <TextView
+                    android:id="@+id/enet_points_text_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:text="@string/enet_points"
+                    android:layout_weight="1"/>
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/reset_button"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:background="@drawable/ic_refresh_black_24dp"/>
+
+        </LinearLayout>
+
+        <edu.iitj.epsilon_netdemo.EnetDisplayView
+            android:id="@+id/enet_display_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/status_bar"
+            android:layout_above="@+id/button_bar">
+
+        </edu.iitj.epsilon_netdemo.EnetDisplayView>
+
+
+
+        <LinearLayout
+            android:id="@+id/button_bar"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:weightSum="4"
+            style="?android:attr/buttonBarStyle">
+
+            <Button
+                android:id="@+id/random_points_button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/random_points"
+                style="?android:attr/buttonBarButtonStyle"/>
+
+            <Button
+                android:id="@+id/add_point_button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/add_point"
+                style="?android:attr/buttonBarButtonStyle"/>
+
+            <Button
+                android:id="@+id/set_epsilon_button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/set_epsilon"
+                style="?android:attr/buttonBarButtonStyle"/>
+
+            <Button
+                android:id="@+id/generate_enet_button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/generate_enet"
+                style="?android:attr/buttonBarButtonStyle"/>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <com.wunderlist.slidinglayer.SlidingLayer
+        xmlns:slidingLayer="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/slidingLayer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="36dp"
+        slidingLayer:shadowDrawable="@drawable/sidebar_shadow"
+        slidingLayer:shadowSize="0dp"
+        slidingLayer:offsetDistance="0dp"
+        slidingLayer:previewOffsetDistance="0dp"
+        slidingLayer:stickTo="bottom"
+        slidingLayer:changeStateOnTap="true">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="16dp"
+            android:background="@android:color/darker_gray">
+
+            <ScrollView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                    <TextView
+                        android:id="@+id/log_all_points_text_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/log_all_points"/>
+
+            </ScrollView>
+
+            <ScrollView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <TextView
+                    android:id="@+id/log_enet_points_text_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/log_enet_points"/>
+
+            </ScrollView>
+
+        </LinearLayout>
+
+    </com.wunderlist.slidinglayer.SlidingLayer>
+
+</FrameLayout>

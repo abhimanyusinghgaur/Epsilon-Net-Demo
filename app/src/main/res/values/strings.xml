@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">Epsilon-Net Demo</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+
+    //  Log Strings
+    <string name="log_all_points">Following are the points:\n</string>
+    <string name="log_enet_points">Following are the points in Epsilon-net:\n</string>
+
+    //  Status bar strings
+    <string name="total_points">Total Points: %d</string>
+    <string name="enet_points">E-net Points: %s</string>
+
+    //  Button bar strings
+    <string name="random_points">Random Points</string>
+    <string name="add_point">Add Point</string>
+    <string name="set_epsilon">Set Epsilon</string>
+    <string name="generate_enet">Generate E-net</string>
+</resources>
