@@ -14,6 +14,7 @@
             android:layout_height="36dp"
             android:paddingRight="8dp"
             android:paddingLeft="8dp"
+            android:onClick="onClickStatusBar"
             android:background="@android:color/darker_gray"
             android:layout_alignParentTop="true">
 
@@ -28,7 +29,7 @@
                     android:id="@+id/last_point_text_view"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:text="@string/total_points"
+                    android:text="@string/last_point"
                     android:layout_weight="1"/>
 
                 <TextView
@@ -51,7 +52,7 @@
                     android:id="@+id/epsilon_text_view"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:text="@string/enet_points"
+                    android:text="@string/epsilon"
                     android:layout_weight="1"/>
 
                 <TextView
@@ -67,7 +68,8 @@
                 android:id="@+id/reset_button"
                 android:layout_width="36dp"
                 android:layout_height="36dp"
-                android:background="@drawable/ic_refresh_black_24dp"/>
+                android:background="@drawable/ic_refresh_black_24dp"
+                android:onClick="onClickResetButton"/>
 
         </LinearLayout>
 
@@ -96,6 +98,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:onClick="onClickRandomPointsButton"
                 android:text="@string/random_points"
                 style="?android:attr/buttonBarButtonStyle"/>
 
@@ -104,6 +107,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:onClick="onClickAddPointButton"
                 android:text="@string/add_point"
                 style="?android:attr/buttonBarButtonStyle"/>
 
@@ -112,6 +116,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:onClick="onClickSetEpsilonButton"
                 android:text="@string/set_epsilon"
                 style="?android:attr/buttonBarButtonStyle"/>
 
@@ -120,6 +125,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:onClick="onClickGenerateEnetButton"
                 android:text="@string/generate_enet"
                 style="?android:attr/buttonBarButtonStyle"/>
 

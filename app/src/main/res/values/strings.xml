@@ -11,6 +11,8 @@
     <string name="log_enet_points">Following are the points in Epsilon-net:\n</string>
 
     //  Status bar strings
+    <string name="last_point">Last Point: %1$s, %2$s</string>
+    <string name="epsilon">Epsilon: %s</string>
     <string name="total_points">Total Points: %d</string>
     <string name="enet_points">E-net Points: %s</string>
 

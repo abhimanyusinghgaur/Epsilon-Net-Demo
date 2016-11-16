@@ -4,8 +4,8 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.Rect;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -40,6 +40,21 @@ public class EnetDisplayView extends SurfaceView implements View.OnTouchListener
         maxX = maxY = 0;
     }
 
+    public ArrayList<Integer> getPoints() {
+        Log.d("********************", "******************************************************************************************");
+        Log.d("Points", Utils.toString(points));
+        Log.d("********************", "******************************************************************************************");
+        return points;
+    }
+
+    public int getMaxX() {
+        return maxX;
+    }
+
+    public int getMaxY() {
+        return maxY;
+    }
+
     public void initBitmap() {
         if(!mBitmapCreated) {
             mBitmapCreated = true;
@@ -58,12 +73,13 @@ public class EnetDisplayView extends SurfaceView implements View.OnTouchListener
     }
 
     public void generateRandomPoints(int num_points) {
+        int x = 0, y = 0;
         reset();
         Random random = new Random();
 
         for(int i=0; i<num_points; i++) {
-            int x = random.nextInt(maxX + 1);
-            int y = random.nextInt(maxY + 1);
+            x = random.nextInt(maxX + 1);
+            y = random.nextInt(maxY + 1);
             points.add(x);
             points.add(y);
             mBitmap.setPixel(x, y, Color.WHITE);
@@ -71,7 +87,7 @@ public class EnetDisplayView extends SurfaceView implements View.OnTouchListener
         }
 
         drawBitmap();
-
+        MainActivity.mLastPointTextView.setText(getResources().getString(R.string.last_point, x, y));
         MainActivity.mTotalPointsTextView.setText(getResources().getString(R.string.total_points, points.size()/2));
     }
 
@@ -83,28 +99,34 @@ public class EnetDisplayView extends SurfaceView implements View.OnTouchListener
         drawBitmap();
 
         MainActivity.mLogAllPointsTextView.append("X: " + x + ", Y: " + y + "\n");
+        MainActivity.mLastPointTextView.setText(getResources().getString(R.string.last_point, x, y));
         MainActivity.mTotalPointsTextView.setText(getResources().getString(R.string.total_points, points.size()/2));
     }
 
     public void drawEnet(int[] indices) {
-        Canvas canvas = mHolder.lockCanvas();
-
         for(int i=0; i<indices.length; i++) {
             int x = points.get(indices[i]*2);
             int y = points.get(indices[i]*2 + 1);
+            mBitmap.setPixel(x-1, y-1, Color.RED);
+            mBitmap.setPixel(x, y-1, Color.RED);
+            mBitmap.setPixel(x+1, y-1, Color.RED);
+            mBitmap.setPixel(x+1, y, Color.RED);
+            mBitmap.setPixel(x+1, y+1, Color.RED);
+            mBitmap.setPixel(x, y+1, Color.RED);
+            mBitmap.setPixel(x-1, y+1, Color.RED);
+            mBitmap.setPixel(x-1, y, Color.RED);
             mBitmap.setPixel(x, y, Color.RED);
 
             MainActivity.mLogEnetPointsTextView.append("X: " + x + ", Y: " + y + "\n");
         }
         drawBitmap();
-
-        mHolder.unlockCanvasAndPost(canvas);
     }
 
     public void reset() {
         points.clear();
         mBitmap.eraseColor(Color.BLACK);
         drawBitmap();
+        MainActivity.mLastPointTextView.setText(getResources().getString(R.string.last_point, "-", "-"));
         MainActivity.mTotalPointsTextView.setText(getResources().getString(R.string.total_points, 0));
         MainActivity.mLogAllPointsTextView.setText(R.string.log_all_points);
         MainActivity.mLogEnetPointsTextView.setText(R.string.log_enet_points);

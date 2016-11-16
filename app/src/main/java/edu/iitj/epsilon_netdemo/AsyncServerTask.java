@@ -20,10 +20,6 @@ import java.net.URLEncoder;
  */
 public class AsyncServerTask extends AsyncTask<String, Void, String> {
 
-    //private ProgressDialog dialog = new ProgressDialog(getBaseContext());
-    private final String REST_TOKEN = "0ae63a7e2fabddd08f22c72096cfddaa";
-    private final String REST_SECRET= "edurer_mobile";
-
     public final static String GET = "GET";
     public final static String POST = "POST";
 
@@ -36,26 +32,16 @@ public class AsyncServerTask extends AsyncTask<String, Void, String> {
 
     public AsyncServerTask() {
         this.requestMethod = POST;
-        try {
-            postParameters = "token=" + URLEncoder.encode(REST_TOKEN, "UTF-8") +
-                    "&secret=" + URLEncoder.encode(REST_SECRET, "UTF-8");
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
+        this.postParameters = "";
     }
 
     public AsyncServerTask(String urlString, Object object, Method callback) {
         this.requestMethod = POST;
+        this.postParameters = "";
         this.urlString = urlString;
         this.object = object;
         this.completionCallback = callback;
 
-        try {
-            postParameters = "token=" + URLEncoder.encode(REST_TOKEN, "UTF-8") +
-                    "&secret=" + URLEncoder.encode(REST_SECRET, "UTF-8");
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
     }
 
     //setters
@@ -73,7 +59,9 @@ public class AsyncServerTask extends AsyncTask<String, Void, String> {
 
     public void addPostParameter(String parameter, String value) {
         try {
-            postParameters += "&" + parameter + "=" + URLEncoder.encode(value, "UTF-8");
+            if(!postParameters.equals(""))
+                postParameters += "&";
+            postParameters += parameter + "=" + URLEncoder.encode(value, "UTF-8");
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
@@ -85,14 +73,11 @@ public class AsyncServerTask extends AsyncTask<String, Void, String> {
 
     @Override
     protected void onPreExecute() {
-        //this.dialog.setMessage("Please wait");
-        //this.dialog.show();
-//        Log.d("***********************"," in :onPreExecute *******************************************");
+
     }
 
     @Override
     protected String doInBackground(String... params) {
-//        Log.d("***********************"," in :doInBackground *******************************************");
         InputStream is = null;
         StringBuilder response = new StringBuilder();
         URL url = null;
@@ -106,7 +91,7 @@ public class AsyncServerTask extends AsyncTask<String, Void, String> {
             c.setDoOutput(true);
 
             if(requestMethod.equals(POST)) {
-                c.setRequestMethod("POST");
+                c.setRequestMethod(POST);
                 c.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
 
                 c.setFixedLengthStreamingMode(postParameters.getBytes().length);
