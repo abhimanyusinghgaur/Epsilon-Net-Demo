@@ -4,7 +4,9 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.support.annotation.ColorInt;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -52,12 +54,12 @@ public class EnetDisplayView extends SurfaceView implements View.OnTouchListener
     }
 
     public void initBitmap() {
-        if(!mBitmapCreated) {
+        //if(!mBitmapCreated) {
             mBitmapCreated = true;
             maxX = this.getMeasuredWidth();
             maxY = this.getMeasuredHeight();
             mBitmap = Bitmap.createBitmap(maxX + 1, maxY + 1, Bitmap.Config.ARGB_8888);
-        }
+        //}
     }
 
     private void drawBitmap() {
@@ -66,6 +68,26 @@ public class EnetDisplayView extends SurfaceView implements View.OnTouchListener
             canvas.drawBitmap(mBitmap, 0, 0, null);
             mHolder.unlockCanvasAndPost(canvas);
         }
+    }
+
+    /*
+    * Actually draws a square :P
+    */
+    private void drawCircle(int cx, int cy, int radius, @ColorInt int color) {
+        final float scale = getResources().getDisplayMetrics().density;
+        int startX = (int)(cx - scale*radius);
+        int startY = (int)(cy - scale*radius);
+        int endX = (int)(cx + scale*radius);
+        int endY = (int)(cy + scale*radius);
+
+        startX = startX >= 0 ? startX : 0;
+        startY = startY >= 0 ? startY : 0;
+        endX = endX <= maxX ? endX : maxX;
+        endY = endY <= maxY ? endY : maxY;
+
+        for(int x=startX; x<=endX; x++)
+            for (int y=startY; y<=endY; y++)
+                mBitmap.setPixel(x, y, color);
     }
 
     public void generateRandomPoints(int num_points) {
@@ -78,7 +100,7 @@ public class EnetDisplayView extends SurfaceView implements View.OnTouchListener
             y = random.nextInt(maxY + 1);
             points.add(x);
             points.add(y);
-            mBitmap.setPixel(x, y, Color.WHITE);
+            drawCircle(x, y, 1, Color.WHITE);
             MainActivity.mLogAllPointsTextView.append("X: " + x + ", Y: " + y + "\n");
         }
 
@@ -90,7 +112,7 @@ public class EnetDisplayView extends SurfaceView implements View.OnTouchListener
     public void addPoint(int x, int y) {
         points.add(x);
         points.add(y);
-        mBitmap.setPixel(x, y, Color.WHITE);
+        drawCircle(x, y, 1, Color.WHITE);
 
         drawBitmap();
 
@@ -103,15 +125,7 @@ public class EnetDisplayView extends SurfaceView implements View.OnTouchListener
         for(int i=0; i<indices.length; i++) {
             int x = points.get(indices[i]*2);
             int y = points.get(indices[i]*2 + 1);
-            mBitmap.setPixel(x-1, y-1, Color.RED);
-            mBitmap.setPixel(x, y-1, Color.RED);
-            mBitmap.setPixel(x+1, y-1, Color.RED);
-            mBitmap.setPixel(x+1, y, Color.RED);
-            mBitmap.setPixel(x+1, y+1, Color.RED);
-            mBitmap.setPixel(x, y+1, Color.RED);
-            mBitmap.setPixel(x-1, y+1, Color.RED);
-            mBitmap.setPixel(x-1, y, Color.RED);
-            mBitmap.setPixel(x, y, Color.RED);
+            drawCircle(x, y, 1, Color.RED);
 
             MainActivity.mLogEnetPointsTextView.append("X: " + x + ", Y: " + y + "\n");
         }
@@ -143,8 +157,9 @@ public class EnetDisplayView extends SurfaceView implements View.OnTouchListener
 
     @Override
     public void surfaceCreated(SurfaceHolder holder) {
-        if(mBitmapCreated)
-            drawBitmap();
+        if(!mBitmapCreated)
+            initBitmap();
+        drawBitmap();
     }
 
     @Override

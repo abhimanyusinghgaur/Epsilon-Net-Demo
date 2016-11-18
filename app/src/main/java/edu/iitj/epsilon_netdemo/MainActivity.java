@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.text.Html;
 import android.text.InputType;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -76,12 +77,13 @@ public class MainActivity extends AppCompatActivity
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
-        drawer.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+        /*drawer.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
             public void onGlobalLayout() {
+                Log.e("********", "In drawer's addOnGlobalLayoutListener:");
                 mEnetDisplayView.initBitmap();
             }
-        });
+        });*/
         toggle.syncState();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
@@ -98,6 +100,14 @@ public class MainActivity extends AppCompatActivity
         mEnetDisplayView.setOnTouchListener(state ? mEnetDisplayView : null);
     }
 
+    private void reset() {
+        mEpsilon = 0.0f;
+        mEnetDisplayView.reset();
+        mEpsilonTextView.setText(getResources().getString(R.string.epsilon, "-"));
+        mEnetPointsTextView.setText(getResources().getString(R.string.enet_points, "-"));
+        setButtonsEnabled(true);
+    }
+
     public void onClickStatusBar(View v) {
         SlidingLayer mSlidingLayer = (SlidingLayer) findViewById(R.id.slidingLayer);
         if(mSlidingLayer.isOpened())
@@ -107,11 +117,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     public void onClickResetButton(View v) {
-        mEpsilon = 0.0f;
-        mEnetDisplayView.reset();
-        mEpsilonTextView.setText(getResources().getString(R.string.epsilon, "-"));
-        mEnetPointsTextView.setText(getResources().getString(R.string.enet_points, "-"));
-        setButtonsEnabled(true);
+        reset();
     }
 
     public void onClickRandomPointsButton(View v) {
@@ -135,8 +141,8 @@ public class MainActivity extends AppCompatActivity
                         } else if(Integer.parseInt(num_points.getText().toString()) > 1000 || Integer.parseInt(num_points.getText().toString()) <= 0) {
                             num_points.setError("Number should be between [1, 1000]");
                         } else {
+                            reset();
                             mEnetDisplayView.generateRandomPoints(Integer.parseInt(num_points.getText().toString()));
-                            setButtonsEnabled(true);
                             alertDialog.dismiss();
                         }
                     }

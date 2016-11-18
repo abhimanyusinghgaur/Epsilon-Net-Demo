@@ -1,26 +1,28 @@
 <resources>
-    <string name="app_name">Epsilon-Net Demo</string>
+    <string name="app_name">Epsilon(\u03b5)-Net Demo</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
+    <string name="nav_header">A demo application for presenting \u03b5-nets</string>
+
     <string name="action_settings">Settings</string>
 
     //  Log Strings
-    <string name="log_all_points">Following are the points:\n</string>
-    <string name="log_enet_points">Following are the points in Epsilon-net:\n</string>
+    <string name="log_all_points">Following are the points in canvas:\n</string>
+    <string name="log_enet_points">Following are the points in \u03b5-net:\n</string>
 
     //  Status bar strings
     <string name="last_point">Last Point: %1$s, %2$s</string>
-    <string name="epsilon">Epsilon: %s</string>
+    <string name="epsilon">Epsilon(\u03b5): %s</string>
     <string name="total_points">Total Points: %d</string>
-    <string name="enet_points">E-net Points: %s</string>
+    <string name="enet_points">\u03b5-net Points: %s</string>
 
     //  Button bar strings
     <string name="random_points">Random Points</string>
     <string name="add_point">Add Point</string>
     <string name="set_epsilon">Set Epsilon</string>
-    <string name="generate_enet">Generate E-net</string>
+    <string name="generate_enet">Generate \u03b5-net</string>
 
     //  Navigation Strings
     <string name="usage">Usage</string>
@@ -29,39 +31,51 @@
 
     <string name="usage_text">
         <![CDATA[
-        Note the following points:
+        <b>Note the following points:</b>
         <ul>
-            <li>The top grey bar on the home screen is called <i>STATUS BAR</i>. It displays status of the various application properties, like the last added point and total number of points in the canvas, epsilon value and number of points in epsilon-net. </li>
-            <li>Touch the <i>STATUS BAR</i> to open/close the <i>LOG</i> area. In <i>LOG</i> area you can see the co-ordinates of all created points and points in epsilon-net, plotted in <i>CANVAS</i>.</li>
-            <li>At the end of <i>STATUS BAR</i> you can see <i>RESET BUTTON</i>. Use it to reset the application.</li>
-            <li>The black region below <i>STATUS BAR</i> is called <i>CANVAS</i>. This region is used for graphically displaying the epsilon-net. Touch anywhere on this region to add a point in <i>CANVAS</i> at that position.</li>
-            <li>The bottom bar contains four buttons for different uses as explained below.</li>
-            <li><i>RANDOM POINTS</i> button can be used to randomly generate and plot given number of points in <i>CANVAS</i>.</li>
-            <li><i>ADD POINT</i> button can be used to add a single point to the <i>CANVAS</i>. Note that same can be achieved by touching on the <i>CANVAS</i>.</li>
-            <li><i>SET EPSILON</i> button is used to set the value of epsilon for generating the epsilon-net.</li>
-            <li><i>GENERATE E-NET</i> button is used to generate the epsilon net for the current configuration. The points in the epsilon-net are displayed in red colour.</li>
-            <li>Internet is required during the process of generating the epsilon-net, as API calls are made.</li>
+            <br>• <li>The top grey bar on the home screen is called <i>STATUS BAR</i>. It displays status of the various application properties, like the last added point and total number of points in the canvas, epsilon value and number of points in epsilon-net. </li>
+            <br>• <li>Touch the <i>STATUS BAR</i> to open/close the <i>LOG</i> area. In <i>LOG</i> area you can see the co-ordinates of all created points and points in epsilon-net, plotted in <i>CANVAS</i>.</li>
+            <br>• <li>At the end of <i>STATUS BAR</i> you can see <i>RESET BUTTON</i>. Use it to reset the application.</li>
+            <br>• <li>The black region below <i>STATUS BAR</i> is called <i>CANVAS</i>. This region is used for graphically displaying the epsilon-net. Touch anywhere on this region to add a point in <i>CANVAS</i> at that position.</li>
+            <br>• <li>The bottom bar contains four buttons for different uses as explained below.</li>
+            <br>• <li><i>RANDOM POINTS</i> button can be used to randomly generate and plot given number of points in <i>CANVAS</i>.</li>
+            <br>• <li><i>ADD POINT</i> button can be used to add a single point to the <i>CANVAS</i>. Note that same can be achieved by touching on the <i>CANVAS</i>.</li>
+            <br>• <li><i>SET EPSILON</i> button is used to set the value of epsilon for generating the epsilon-net.</li>
+            <br>• <li><i>GENERATE E-NET</i> button is used to generate the epsilon net for the current configuration. The points in the epsilon-net are displayed in red colour.</li>
+            <br>• <li>Internet is required during the process of generating the epsilon-net, as API calls are made.</li>
         </ul>
-        Use the application as follows:
+        <br><br><b>Use the application as follows:</b>
         <ul>
-            <li>First plot some points in the canvas.</li>
-            <li>Set the value of epsilon.</li>
-            <li>Generate epsilon-net.</li>
-            <li>Check logs if required, otherwise, reset the application to use it again.</li>
+            <br>• <li>First plot some points in the canvas.</li>
+            <br>• <li>Set the value of epsilon.</li>
+            <br>• <li>Generate epsilon-net.</li>
+            <br>• <li>Check logs if required, otherwise, reset the application to use it again.</li>
         </ul>
         ]]>
     </string>
 
     <string name="about_text">
         <![CDATA[
-        <p>This application graphically demonstrates an example of the algorithm proposed by <i><b>Norbert</b> et al</i> in their paper titled <b>Tighter Estimates for e-nets for Disks</b>.</p>
-        <p>Their algorithm greatly reduces the upper bound on the size of epsilon-nets for family of disks in the plane. The algorithm proposed by them gives an epsilon-net of size less than or equal to 13.4/&#120576;.</p>
+        <p>This application graphically demonstrates the algorithm proposed by <b>Bus</b> <i>et al.</i> in their paper titled <b>Tighter Estimates for \u03b5-nets for Disks</b>.</p>
+        <p>Their algorithm greatly reduces the upper bound on the size of epsilon-nets for family of disks in the plane. The algorithm proposed by them gives an epsilon-net of size less than or equal to 13.4/\u03b5.</p>
         ]]>
     </string>
 
     <string name="credits_text">
         <![CDATA[
-        Credits
+        • Abhimanyu Singh Gaur
+        <br>&nbsp;&nbsp;Computer Science and Engineering
+        <br>&nbsp;&nbsp;Pre-Final Year
+        <br>&nbsp;&nbsp;IIT-Jodhpur
+        <br><br>• Abhinav Rai
+        <br>&nbsp;&nbsp;Computer Science and Engineering
+        <br>&nbsp;&nbsp;Pre-Final Year
+        <br>&nbsp;&nbsp;IIT-Jodhpur
+        <br><br>• Dr. Aritra Banik
+        <br>&nbsp;&nbsp;Assistant Professor
+        <br>&nbsp;&nbsp;Computer Science Department
+        <br>&nbsp;&nbsp;IIT-Jodhpur
+        <br><br>Special thanks to Bus <i>et al.</i> for the algorithm. Refer to <a href="https://arxiv.org/abs/1501.03246">https://arxiv.org/abs/1501.03246</a> for their research paper.
         ]]>
     </string>
 
