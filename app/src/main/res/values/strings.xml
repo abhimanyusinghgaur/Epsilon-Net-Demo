@@ -25,9 +25,11 @@
     <string name="generate_enet">Generate \u03b5-net</string>
 
     //  Navigation Strings
+    <string name="home">Home</string>
     <string name="usage">Usage</string>
     <string name="about">About</string>
     <string name="credits">Credits</string>
+    <string name="exit">Exit</string>
 
     <string name="usage_text">
         <![CDATA[

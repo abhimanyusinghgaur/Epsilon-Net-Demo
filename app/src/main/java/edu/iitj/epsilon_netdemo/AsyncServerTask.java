@@ -16,7 +16,8 @@ import java.net.URL;
 import java.net.URLEncoder;
 
 /**
- * Created by user on 14-11-2016.
+ * Created by Abhimanyu Singh Gaur on 14-11-2016.
+ * This class handles asynchronous requests to a url.
  */
 public class AsyncServerTask extends AsyncTask<String, Void, String> {
 

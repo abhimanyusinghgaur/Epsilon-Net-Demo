@@ -7,7 +7,8 @@ import android.net.NetworkInfo;
 import java.util.ArrayList;
 
 /**
- * Created by user on 15-11-2016.
+ * Created by Abhimanyu Singh Gaur on 15-11-2016.
+ * Utility Class for defining miscellaneous functions.
  */
 public class Utils {
 

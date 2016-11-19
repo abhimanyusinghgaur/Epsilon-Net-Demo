@@ -6,7 +6,6 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.support.annotation.ColorInt;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -16,7 +15,8 @@ import java.util.ArrayList;
 import java.util.Random;
 
 /**
- * Created by user on 15-11-2016.
+ * Created by Abhimanyu Singh Gaur on 15-11-2016.
+ * Custom View to display Epsilon-net.
  */
 public class EnetDisplayView extends SurfaceView implements View.OnTouchListener, SurfaceHolder.Callback {
 
@@ -122,9 +122,9 @@ public class EnetDisplayView extends SurfaceView implements View.OnTouchListener
     }
 
     public void drawEnet(int[] indices) {
-        for(int i=0; i<indices.length; i++) {
-            int x = points.get(indices[i]*2);
-            int y = points.get(indices[i]*2 + 1);
+        for (int index : indices) {
+            int x = points.get(index * 2);
+            int y = points.get(index * 2 + 1);
             drawCircle(x, y, 1, Color.RED);
 
             MainActivity.mLogEnetPointsTextView.append("X: " + x + ", Y: " + y + "\n");

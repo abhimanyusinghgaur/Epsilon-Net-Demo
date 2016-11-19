@@ -155,7 +155,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:padding="16dp"
-            android:background="@android:color/darker_gray">
+            android:background="@android:color/darker_gray"
+            android:baselineAligned="false">
 
             <ScrollView
                 android:layout_width="0dp"
